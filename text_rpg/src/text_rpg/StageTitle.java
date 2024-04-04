@@ -4,12 +4,10 @@ public class StageTitle extends Stage {
 
 	@Override
 	public void updateStage() {
-		while (GameManager.nextStage.equals("TITLE")) {
-			GameManager.getInstace().printSpace();
-			showTitle();
-			inputString("게임을 실행하려면 아무키나 누르세요.\n");
-			GameManager.nextStage = "LOBBY";
-		}
+		GameManager.getInstace().printSpace();
+		showTitle();
+		inputString("게임을 실행하려면 아무키나 누르세요.\n");
+		GameManager.nextStage = "LOBBY";
 	}
 
 	private void showTitle() {
@@ -19,7 +17,7 @@ public class StageTitle extends Stage {
 		String[] show = text.split("");
 		for (int i = 0; i < show.length; i++) {
 			System.out.print(show[i]);
-			GameManager.getInstace().delay();
+			GameManager.getInstace().delay(15);
 		}
 	}
 
