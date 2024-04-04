@@ -1,4 +1,4 @@
-package text_rpg;
+package stage;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -7,6 +7,16 @@ abstract public class Stage {
 
 	public Random random = new Random();
 	public Scanner scan = new Scanner(System.in);
+
+	private boolean isSet;
+
+	public boolean getIsSet() {
+		return this.isSet;
+	}
+
+	public void setIsSet() {
+		this.isSet = !this.isSet;
+	}
 
 	public int inputNumber(String text) {
 		int number = -1;

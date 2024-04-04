@@ -3,12 +3,34 @@ package text_rpg;
 import java.util.HashMap;
 import java.util.Map;
 
+import stage.Stage;
+import stage.StageLobby;
+import stage.StageTitle;
+import stage.StageTown;
+
 public class GameManager {
 
+	public static final String black = "\u001B[30m";
+	public static final String red = "\u001B[31m";
+	public static final String green = "\u001B[32m";
+	public static final String yellow = "\u001B[33m";
+	public static final String blue = "\u001B[34m";
+	public static final String purple = "\u001B[35m";
+	public static final String cyan = "\u001B[36m";
+	public static final String white = "\u001B[37m";
+
+	public static final String exit = "\u001B[0m";
+
 	private Map<String, Stage> stageList = new HashMap<String, Stage>();
+
+	public static boolean isOpenCave;
+	public static boolean isOpenCastle;
+
 	private String curStage;
 	public static String nextStage;
-	private static boolean isEnd;
+	public static boolean isEnd;
+	public static int pY;
+	public static int pX;
 
 	public boolean isRun() {
 		return nextStage.equals("END") || isEnd ? false : true;
@@ -17,7 +39,9 @@ public class GameManager {
 	private GameManager() {
 		setStages();
 		curStage = "";
-		nextStage = "TITLE";
+		nextStage = "TOWN";
+		pY = 0;
+		pX = 0;
 	}
 
 	private static GameManager instance = new GameManager();
@@ -29,6 +53,7 @@ public class GameManager {
 	private void setStages() {
 		stageList.put("TITLE", new StageTitle());
 		stageList.put("LOBBY", new StageLobby());
+		stageList.put("TOWN", new StageTown());
 	}
 
 	// 공백 출력
@@ -56,7 +81,7 @@ public class GameManager {
 			e.printStackTrace();
 		}
 	}
-	
+
 	// 텍스트 출력효과
 	public void showText(String text, int delay) {
 		String[] show = text.split("\n");
