@@ -2,7 +2,7 @@ package stage;
 
 import text_rpg.GameManager;
 
-public class StageBattel extends Stage {
+public class StageBattle extends Stage {
 
 	@Override
 	public void updateStage() {

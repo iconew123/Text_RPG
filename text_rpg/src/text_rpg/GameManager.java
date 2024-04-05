@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import stage.Stage;
-import stage.StageBattel;
+import stage.StageBattle;
 import stage.StageCastle;
 import stage.StageCave;
 import stage.StageForest;
@@ -65,7 +65,7 @@ public class GameManager {
 		stageList.put("FOREST", new StageForest());
 		stageList.put("CAVE", new StageCave());
 		stageList.put("CASTLE", new StageCastle());
-		stageList.put("BATTLE", new StageBattel());
+		stageList.put("BATTLE", new StageBattle());
 	}
 
 	// 공백 출력
