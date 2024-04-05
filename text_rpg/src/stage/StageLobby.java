@@ -74,7 +74,6 @@ public class StageLobby extends Stage {
 			} else if (sel == LOAD_GAME) {
 				// 여기에 데이터 로드
 				GameManager.getInstace().showLoading();
-				GameManager.nextStage = "TOWN";
 				break;
 			} else if (sel == SAVE_GAME) {
 				// 여기에 데이터 세이브

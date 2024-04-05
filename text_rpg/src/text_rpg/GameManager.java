@@ -4,6 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import stage.Stage;
+import stage.StageBattel;
+import stage.StageCastle;
+import stage.StageCave;
+import stage.StageForest;
+import stage.StageGuild;
 import stage.StageLobby;
 import stage.StageTitle;
 import stage.StageTown;
@@ -26,7 +31,8 @@ public class GameManager {
 	public static boolean isOpenCave;
 	public static boolean isOpenCastle;
 
-	private String curStage;
+	public static String curStage;
+	public static String preStage;
 	public static String nextStage;
 	public static boolean isEnd;
 	public static int pY;
@@ -39,7 +45,8 @@ public class GameManager {
 	private GameManager() {
 		setStages();
 		curStage = "";
-		nextStage = "TOWN";
+		preStage = "";
+		nextStage = "CAVE";
 		pY = 0;
 		pX = 0;
 	}
@@ -54,6 +61,11 @@ public class GameManager {
 		stageList.put("TITLE", new StageTitle());
 		stageList.put("LOBBY", new StageLobby());
 		stageList.put("TOWN", new StageTown());
+		stageList.put("GUILD", new StageGuild());
+		stageList.put("FOREST", new StageForest());
+		stageList.put("CAVE", new StageCave());
+		stageList.put("CASTLE", new StageCastle());
+		stageList.put("BATTLE", new StageBattel());
 	}
 
 	// 공백 출력

@@ -1,22 +1,24 @@
 package stage;
 
+import text_rpg.GameManager;
+
 public class StageCastle extends Stage implements Init{
+	
+	private String strTownMap = "";
 
 	@Override
 	public void updateStage() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void setMap() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public boolean check(int y, int x) {
-		// TODO Auto-generated method stub
+	public boolean check(int y, int x ,String interaction) {
+		
 		return false;
 	}
 
