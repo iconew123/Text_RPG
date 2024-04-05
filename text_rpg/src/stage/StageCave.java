@@ -89,7 +89,7 @@ public class StageCave extends Stage implements Init {
 		if (Map.map.get(y).get(x).equals(WALL))
 			return false;
 
-		if (Map.map.get(y).get(x).equals(POTAL_TOWN) && interaction.equals("q")) {
+		if (Map.map.get(y).get(x).equals(POTAL_TOWN) && (interaction.equals("q") || interaction.equals("Q"))) {
 			String text = "[마을]로 이동합니다.\n";
 			GameManager.getInstace().showText(text, 1000);
 			GameManager.getInstace().showLoading();

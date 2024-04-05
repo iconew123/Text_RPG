@@ -122,8 +122,7 @@ abstract public class Stage {
 
 	private void showOperating() {
 		Object section = Map.map.get(GameManager.pY).get(GameManager.pX);
-		if (section.equals(POTAL_FOREST) || section.equals(POTAL_CAVE) || section.equals(POTAL_CASTLE)
-				|| section.equals(GUILD) || section.equals(POTAL_TOWN))
+		if (!section.equals(LOAD))
 			System.out.println("        [w]     [q]");
 		else
 			System.out.println("        [w]     ");

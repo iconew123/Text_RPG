@@ -58,14 +58,15 @@ public class StageTown extends Stage implements Init {
 			GameManager.getInstace().showLoading();
 		}
 
-		if (Map.map.get(y).get(x).equals(POTAL_FOREST) && interaction.equals("q")) {
+		if (Map.map.get(y).get(x).equals(POTAL_FOREST) && (interaction.equals("q") || interaction.equals("Q"))) {
 			String text = "던전[숲]으로 이동합니다.\n";
 			GameManager.getInstace().showText(text, 1000);
 			GameManager.nextStage = "FOREST";
 			GameManager.getInstace().showLoading();
 		}
 
-		if (Map.map.get(y).get(x).equals(POTAL_CAVE) && GameManager.isOpenCave && interaction.equals("q")) {
+		if (Map.map.get(y).get(x).equals(POTAL_CAVE) && GameManager.isOpenCave
+				&& (interaction.equals("q") || interaction.equals("Q"))) {
 			String text = "던전[동글]로 이동합니다.\n";
 			GameManager.getInstace().showText(text, 1000);
 			GameManager.nextStage = "CAVE";
