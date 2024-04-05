@@ -63,5 +63,7 @@ abstract public class Unit {
 	public void setLv() {
 		this.lv++;
 	}
+	
+	abstract void Attack(Unit target);
 
 }

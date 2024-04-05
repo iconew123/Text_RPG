@@ -37,4 +37,10 @@ public class Player extends Unit {
 		this.isParty = !this.isParty;
 	}
 
+	@Override
+	void Attack(Unit target) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
