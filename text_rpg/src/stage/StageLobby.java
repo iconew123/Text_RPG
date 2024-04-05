@@ -68,6 +68,7 @@ public class StageLobby extends Stage {
 			int sel = inputNumber(">> ");
 
 			if (sel == NEW_GAME) {
+				GameManager.playerName = inputString("플레이어 이름을 입력하세요 : ");
 				GameManager.getInstace().showLoading();
 				GameManager.nextStage = "TOWN";
 				break;
