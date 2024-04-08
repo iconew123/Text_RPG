@@ -5,14 +5,18 @@ abstract public class Unit {
 	private String name;
 	private int max_hp;
 	private int hp;
+	private int max_mp;
+	private int mp;
 	private int power;
 	private int defense;
 	private int lv;
 
-	public Unit(String name, int hp, int power, int defense, int lv) {
+	public Unit(String name, int hp, int mp, int power, int defense, int lv) {
 		this.name = name;
 		this.max_hp = hp;
 		this.hp = hp;
+		this.max_mp = mp;
+		this.mp = mp;
 		this.power = power;
 		this.defense = defense;
 		this.lv = lv;
@@ -30,6 +34,14 @@ abstract public class Unit {
 		this.max_hp += 50;
 	}
 
+	public int getMaxMp() {
+		return this.max_mp;
+	}
+
+	public void setMaxMp() {
+		this.max_mp += 50;
+	}
+
 	public int getHp() {
 		return this.hp;
 	}
@@ -38,6 +50,14 @@ abstract public class Unit {
 		this.hp += hp;
 		if (hp <= 0)
 			hp = 0;
+	}
+
+	public int getMp() {
+		return this.mp;
+	}
+
+	public void setMp(int mp) {
+		this.mp += mp;
 	}
 
 	public int getPower() {
@@ -63,7 +83,7 @@ abstract public class Unit {
 	public void setLv() {
 		this.lv++;
 	}
-	
+
 	abstract void Attack(Unit target);
 
 }

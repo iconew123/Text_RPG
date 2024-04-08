@@ -32,6 +32,7 @@ public class GameManager {
 	public static boolean isOpenCastle;
 
 	public static String playerName;
+	public static String playerType;
 
 	public static String curStage;
 	public static String preStage;
@@ -48,7 +49,7 @@ public class GameManager {
 		setStages();
 		curStage = "";
 		preStage = "";
-		nextStage = "TOWN";
+		nextStage = "GUILD";
 		pY = 0;
 		pX = 0;
 	}

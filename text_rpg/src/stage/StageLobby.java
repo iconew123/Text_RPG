@@ -69,6 +69,22 @@ public class StageLobby extends Stage {
 
 			if (sel == NEW_GAME) {
 				GameManager.playerName = inputString("플레이어 이름을 입력하세요 : ");
+				while (true) {
+					System.out.println("[1] 전사 , [2] 마법사 , [3] 힐러");
+					int type = inputNumber("직업을 선택하세요 : ");
+					if (type == 1)
+						GameManager.playerType = "전사";
+					else if (type == 2)
+						GameManager.playerType = "마법사";
+					else if (type == 3)
+						GameManager.playerType = "힐러";
+					else
+						continue;
+
+					break;
+
+				}
+
 				GameManager.getInstace().showLoading();
 				GameManager.nextStage = "TOWN";
 				break;

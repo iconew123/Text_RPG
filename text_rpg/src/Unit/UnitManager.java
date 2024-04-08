@@ -6,16 +6,19 @@ import text_rpg.GameManager;
 
 public class UnitManager {
 
-	private static Vector<Player> playerList = new Vector<Player>();
+	public static final int MAX_PARTY = 3;
+
+	public static Vector<Player> partyList = new Vector<Player>();
 	private Vector<Unit> monsterList = new Vector<Unit>();
-	
+
 	private UnitManager() {
-		playerList.add(new Player(GameManager.playerName, "전사", 1000, 50, 10, 1, true));
+		partyList.add(new Player(GameManager.playerName, GameManager.playerType, 500, 500, 30, 10, 1, true));
 	}
-	
+
 	private static UnitManager instance = new UnitManager();
-	
+
 	public static UnitManager getInstance() {
 		return instance;
-	}	
+	}
+
 }

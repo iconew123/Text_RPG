@@ -1,20 +1,26 @@
 package Unit;
 
+import Item.Item;
+
 public class Player extends Unit {
 
-	public static int money;
+	public static int money = 10000;
 
 	private String type;
 	private int exp;
 	private boolean isParty;
-	// 아이템 착용 추가
+	Item weapon;
+	Item armor;
+	Item accessory;
 
-	public Player(String name, String type, int hp, int power, int defense, int lv, boolean isParty) {
-		super(name, hp, power, defense, lv);
+	public Player(String name, String type, int hp, int mp, int power, int defense, int lv, boolean isParty) {
+		super(name, hp, mp, power, defense, lv);
 		this.exp = 0;
 		this.type = type;
 		this.isParty = isParty;
-		// 아이템 착용 초기값 null
+		this.weapon = null;
+		this.armor = null;
+		this.accessory = null;
 	}
 
 	public int getExp() {
@@ -40,7 +46,16 @@ public class Player extends Unit {
 	@Override
 	void Attack(Unit target) {
 		// TODO Auto-generated method stub
-		
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		String message = String.format("[이름 : %s] , [직업 : %s] , [레벨 : %d] , [exp : %d/%d]\n", this.getName(), this.type,
+				this.getLv(), this.exp, this.getLv() * 100);
+		message += String.format("[HP : %d/%d] , [MP : %d/%d] , [공격력 : %d] , [방어력 : %d]\n", this.getHp(),
+				this.getMaxHp(), this.getMp(), this.getMaxMp(), this.getPower(), this.getDefense());
+		return message;
 	}
 
 }
