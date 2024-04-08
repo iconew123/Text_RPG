@@ -48,10 +48,10 @@ abstract public class Stage {
 		return scan.next();
 	}
 
+	// 맵 파싱
 	public void parsingMap(String map) {
-		Map.map = new ArrayList<ArrayList<Integer>>();
 		String[] parseMap = map.split("\n");
-
+		ArrayList<ArrayList<Integer>> tmp = new ArrayList<ArrayList<Integer>>();
 		for (String parse : parseMap) {
 			String[] oneLine = parse.split(",");
 			ArrayList<Integer> oneSection = new ArrayList<Integer>();
@@ -59,18 +59,38 @@ abstract public class Stage {
 				int section = Integer.parseInt(one);
 				oneSection.add(section);
 			}
-			Map.map.add(oneSection);
+			tmp.add(oneSection);
 		}
+		Maps.map.put(GameManager.curStage, tmp);
+	}
+
+	// 맵 저장 및 로드
+	public String saveAndLoadMap(String location) {
+		String saveText = "";
+		ArrayList<ArrayList<Integer>> row = Maps.map.get(location);
+		for (int i = 0; i < row.size(); i++) {
+			ArrayList<Integer> tile = row.get(i);
+			for (int j = 0; j < tile.size(); j++) {
+				saveText += tile.get(j);
+				if (j < tile.size() - 1)
+					saveText += ",";
+			}
+			if (i < row.size() - 1)
+				saveText += "\n";
+		}
+
+		return saveText;
 	}
 
 	public void showMap() {
-		for (int i = 0; i < Map.map.size(); i++) {
-			for (int j = 0; j < Map.map.get(i).size(); j++) {
+		ArrayList<ArrayList<Integer>> curMap = Maps.map.get(GameManager.curStage);
+		for (int i = 0; i < curMap.size(); i++) {
+			for (int j = 0; j < curMap.get(i).size(); j++) {
 				if (i == GameManager.pY && j == GameManager.pX) {
 					// 플레이어 위치에 플레이어 아이콘 출력
 					System.out.print(GameManager.green + "[★] " + GameManager.exit);
 				} else {
-					Object section = Map.map.get(i).get(j);
+					Object section = curMap.get(i).get(j);
 					if (section.equals(LOAD))
 						System.out.print("    ");
 					else if (section.equals(POTAL_TOWN))
@@ -121,7 +141,8 @@ abstract public class Stage {
 	}
 
 	private void showOperating() {
-		Object section = Map.map.get(GameManager.pY).get(GameManager.pX);
+		ArrayList<ArrayList<Integer>> map = Maps.map.get(GameManager.curStage);
+		Object section = map.get(GameManager.pY).get(GameManager.pX);
 		if (!section.equals(LOAD))
 			System.out.println("        [w]     [q]");
 		else

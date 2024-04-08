@@ -30,9 +30,9 @@ public class GameManager {
 
 	public static boolean isOpenCave;
 	public static boolean isOpenCastle;
-	
+
 	public static String playerName;
-	
+
 	public static String curStage;
 	public static String preStage;
 	public static String nextStage;

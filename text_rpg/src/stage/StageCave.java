@@ -49,7 +49,7 @@ public class StageCave extends Stage implements Init {
 
 	@Override
 	public void setMap() {
-		if (!isexsist) {
+		if (strCaveMap.isEmpty()) {
 			strCaveMap += "9,9,9,9,9,9,9,9,9,9\n";
 			strCaveMap += "9,0,0,9,0,0,0,0,0,9\n";
 			strCaveMap += "9,0,9,9,0,0,0,9,0,9\n";
@@ -61,18 +61,10 @@ public class StageCave extends Stage implements Init {
 			strCaveMap += "9,0,0,9,9,0,0,0,0,9\n";
 			strCaveMap += "9,9,9,9,9,9,9,9,9,9\n";
 		} else {
-			strCaveMap += "9,9,9,9,9,9,9,9,9,9\n";
-			strCaveMap += "9,0,0,9,0,0,0,0,0,9\n";
-			strCaveMap += "9,0,9,9,0,0,0,9,0,9\n";
-			strCaveMap += "9,0,9,9,0,0,9,9,9,9\n";
-			strCaveMap += "9,0,9,9,0,0,9,9,9,9\n";
-			strCaveMap += "-1,0,0,0,0,0,0,0,0,8\n";
-			strCaveMap += "9,0,0,0,0,0,9,9,9,9\n";
-			strCaveMap += "9,0,0,0,9,0,9,0,9,9\n";
-			strCaveMap += "9,0,0,9,9,0,0,0,0,9\n";
-			strCaveMap += "9,9,9,9,9,9,9,9,9,9\n";
-			show = true;
+			strCaveMap = saveAndLoadMap(GameManager.curStage);
 		}
+		if (isexsist)
+			show = true;
 		GameManager.pY = 5;
 		GameManager.pX = 0;
 		parsingMap(strCaveMap);
@@ -82,14 +74,15 @@ public class StageCave extends Stage implements Init {
 
 	@Override
 	public boolean check(int y, int x, String interaction) {
+		ArrayList<ArrayList<Integer>> map = Maps.map.get(GameManager.curStage);
 
-		if (y < 0 || y >= Map.map.size() || x < 0 || x >= Map.map.get(y).size())
+		if (y < 0 || y >= map.size() || x < 0 || x >= map.get(y).size())
 			return false;
 
-		if (Map.map.get(y).get(x).equals(WALL))
+		if (map.get(y).get(x).equals(WALL))
 			return false;
 
-		if (Map.map.get(y).get(x).equals(POTAL_TOWN) && (interaction.equals("q") || interaction.equals("Q"))) {
+		if (map.get(y).get(x).equals(POTAL_TOWN) && (interaction.equals("q") || interaction.equals("Q"))) {
 			String text = "[마을]로 이동합니다.\n";
 			GameManager.getInstace().showText(text, 1000);
 			GameManager.getInstace().showLoading();
@@ -101,7 +94,6 @@ public class StageCave extends Stage implements Init {
 			GameManager.pY = 5;
 			GameManager.pX = 9;
 			this.setIsSet();
-			strCaveMap = "";
 		}
 
 		// 보스전투 구현
@@ -110,11 +102,13 @@ public class StageCave extends Stage implements Init {
 	}
 
 	private void showAnimation() {
+
+		ArrayList<ArrayList<Integer>> map = Maps.map.get(GameManager.curStage);
 		// 보스연출
 		for (int i = 1; i < 4; i++) {
-			ArrayList<Integer> changeMap = Map.map.get(bY);
+			ArrayList<Integer> changeMap = map.get(bY);
 			changeMap.set(bX - i, LOAD);
-			Map.map.set(bY, changeMap);
+			map.set(bY, changeMap);
 			System.out.println("================[ CAVE ]================");
 			showMap();
 			GameManager.getInstace().delay(1000);
