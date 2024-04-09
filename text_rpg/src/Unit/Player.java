@@ -30,6 +30,11 @@ public class Player extends Unit {
 
 	public void setExp(int exp) {
 		this.exp = exp;
+		if (this.exp >= this.getLv() * 100) {
+			System.out.printf("[%s] 레벨업!!!\n", this.getName());
+			this.setLv();
+			exp -= this.getLv() * 100;
+		}
 	}
 
 	public String getType() {
@@ -45,7 +50,8 @@ public class Player extends Unit {
 	}
 
 	@Override
-	public void attack(Unit target) {
+	public void attack(Unit monster) {
+		Monster target = (Monster) monster;
 		// 데미지 산출 공식
 		int damage = (int) (this.getPower() * (1 - (double) target.getDefense() / 100));
 		if (damage <= 1)
@@ -54,8 +60,14 @@ public class Player extends Unit {
 				damage);
 		System.out.println(message);
 		target.setHp(damage * -1);
-		if (target.getHp() == 0)
-			System.out.printf("[%s] 유팃 사망\n", target.getName());
+		if (target.getHp() == 0) {
+			int plusExp = target.getExp();
+			System.out.printf("[%s] 유닛 처치로 , 경험치 : %d, 골드 : %d를 얻었습니다.\n", target.getName(), plusExp,
+					target.getMoney());
+			int exp = this.getExp() + plusExp;
+			this.setExp(exp);
+			Player.money += target.getMoney();
+		}
 		GameManager.getInstace().delay(1000);
 	}
 

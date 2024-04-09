@@ -46,6 +46,10 @@ public class StageBattle extends Stage {
 			deadCount();
 			turn = !turn;
 		}
+		if (liveMonster == 0) {
+			System.out.println("플레이어 승리!");
+			GameManager.getInstace().delay(1000);
+		}
 		showUnitList();
 		GameManager.nextStage = GameManager.preStage;
 		GameManager.preStage = "";
