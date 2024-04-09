@@ -28,6 +28,13 @@ public class GameManager {
 
 	private Map<String, Stage> stageList = new HashMap<String, Stage>();
 
+	public static int slimeCnt;
+	public static int mushroomCnt;
+	public static int snailCnt;
+	public static int BatCnt;
+	public static int OrcCnt;
+	public static int GolemCnt;
+
 	public static boolean isOpenCave;
 	public static boolean isOpenCastle;
 
@@ -49,7 +56,7 @@ public class GameManager {
 		setStages();
 		curStage = "";
 		preStage = "";
-		nextStage = "CAVE";
+		nextStage = "FOREST";
 		pY = 0;
 		pX = 0;
 	}

@@ -22,6 +22,7 @@ public class StageBattle extends Stage {
 
 	@Override
 	public void updateStage() {
+		GameManager.getInstace().printSpace();
 		System.out.printf("===============================[BATTLE %s]===============================\n",
 				GameManager.preStage);
 		turn = true;
@@ -67,6 +68,7 @@ public class StageBattle extends Stage {
 			System.out.println("플레이어 승리!");
 			GameManager.getInstace().delay(1000);
 		}
+		countMonsters();
 		showUnitList();
 		// 플레이어 유닛 모두 사망시 즉시 게임종료
 		if (GameManager.nextStage.equals("END"))
@@ -98,6 +100,32 @@ public class StageBattle extends Stage {
 				System.out.println(m);
 		System.out.println("=============================================================================");
 		GameManager.getInstace().delay(1500);
+	}
+
+	private void countMonsters() {
+		for (int i = 0; i < monsters.size(); i++) {
+			String name = monsters.get(i).getName();
+
+			// 스테이지 해금 조건
+			if (name.equals("킹 슬라임"))
+				GameManager.isOpenCave = true;
+			else if(name.equals("킹 케슬 골렘"))
+				GameManager.isOpenCastle = true;
+			
+			// 각각의 몬스터 카운트
+			if (name.contains("슬라임"))
+				GameManager.slimeCnt++;
+			else if (name.contains("버섯"))
+				GameManager.mushroomCnt++;
+			else if (name.contains("달팽이"))
+				GameManager.snailCnt++;
+			else if (name.contains("오크"))
+				GameManager.snailCnt++;
+			else if (name.contains("박쥐"))
+				GameManager.snailCnt++;
+			else if (name.contains("골렘"))
+				GameManager.snailCnt++;
+		}
 	}
 
 	private int targetMonster() {

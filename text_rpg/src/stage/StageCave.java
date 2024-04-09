@@ -16,6 +16,9 @@ public class StageCave extends Stage implements Init {
 	public void updateStage() {
 		if (!this.getIsSet())
 			setMap();
+		
+		if (openBoss() && !isexsist)
+			isexsist = true;
 
 		if (isexsist && !show) {
 			// 연출은 한번만
@@ -25,6 +28,14 @@ public class StageCave extends Stage implements Init {
 		}
 
 		GameManager.getInstace().printSpace();
+		String message = "보스 해금 조건 > ";
+		message += (GameManager.BatCnt >= 5 ? GameManager.green : GameManager.red)
+				+ String.format("박쥐 : [%d/5]   ", GameManager.BatCnt) + GameManager.exit;
+		message += (GameManager.OrcCnt >= 5 ? GameManager.green : GameManager.red)
+				+ String.format("오크 : [%d/5]   ", GameManager.OrcCnt) + GameManager.exit;
+		message += (GameManager.GolemCnt >= 5 ? GameManager.green : GameManager.red)
+				+ String.format("골렘 : [%d/5]   ", GameManager.GolemCnt) + GameManager.exit;
+		System.out.println(message);
 		System.out.println("================[ CAVE ]================");
 		showMap();
 
@@ -38,6 +49,10 @@ public class StageCave extends Stage implements Init {
 			GameManager.pX = recordX;
 		}
 
+		// 맵바뀌면 즉시 종료
+		if (GameManager.curStage != GameManager.nextStage)
+			return;
+
 		boolean spawn = random.nextInt(3) < 1 ? true : false;
 		if (spawn) {
 			// 현재 스테이지의 기준에 따라 몹생성
@@ -47,6 +62,13 @@ public class StageCave extends Stage implements Init {
 			GameManager.getInstace().delay(1000);
 		}
 
+	}
+	
+	private boolean openBoss() {
+
+		boolean isOpen = (GameManager.BatCnt >= 5 && GameManager.OrcCnt >= 5 && GameManager.GolemCnt >= 5);
+
+		return isOpen;
 	}
 
 	@Override

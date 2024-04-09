@@ -57,7 +57,7 @@ public class StageTown extends Stage implements Init {
 			return false;
 
 		if (map.get(y).get(x).equals(GUILD) && interaction.equals("q")) {
-			String text = "길드로 이동합니다.\n";
+			String text = "[길드]로 이동합니다.\n";
 			GameManager.getInstace().showText(text, 1000);
 			GameManager.nextStage = "GUILD";
 			GameManager.getInstace().showLoading();
@@ -88,8 +88,6 @@ public class StageTown extends Stage implements Init {
 			GameManager.nextStage = "CASTLE";
 			GameManager.getInstace().showLoading();
 		} else if (map.get(y).get(x).equals(POTAL_CASTLE) && !GameManager.isOpenCastle) {
-			String text = GameManager.red + "아직 해당 던전을 이용할 수 있는 자격이 없습니다." + GameManager.exit;
-			GameManager.getInstace().showText(text, 1000);
 			return false;
 		}
 

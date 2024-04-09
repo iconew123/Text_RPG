@@ -17,6 +17,9 @@ public class StageForest extends Stage implements Init {
 		if (!this.getIsSet())
 			setMap();
 
+		if (openBoss() && !isexsist)
+			isexsist = true;
+
 		if (isexsist && !show) {
 			// 연출은 한번만
 			GameManager.getInstace().printSpace();
@@ -25,6 +28,14 @@ public class StageForest extends Stage implements Init {
 		}
 
 		GameManager.getInstace().printSpace();
+		String message = "보스 해금 조건 > ";
+		message += (GameManager.mushroomCnt >= 5 ? GameManager.green : GameManager.red)
+				+ String.format("버섯 : [%d/5]   ", GameManager.mushroomCnt) + GameManager.exit;
+		message += (GameManager.slimeCnt >= 5 ? GameManager.green : GameManager.red)
+				+ String.format("슬라임 : [%d/5]   ", GameManager.slimeCnt) + GameManager.exit;
+		message += (GameManager.snailCnt >= 5 ? GameManager.green : GameManager.red)
+				+ String.format("달팽이 : [%d/5]   ", GameManager.snailCnt) + GameManager.exit;
+		System.out.println(message);
 		System.out.println("===============[ FOREST ]===============");
 		showMap();
 
@@ -38,6 +49,10 @@ public class StageForest extends Stage implements Init {
 			GameManager.pX = recordX;
 		}
 
+		// 맵바뀌면 즉시 종료
+		if (GameManager.curStage != GameManager.nextStage)
+			return;
+
 		boolean spawn = random.nextInt(3) < 1 ? true : false;
 		if (spawn) {
 			// 현재 스테이지의 기준에 따라 몹생성
@@ -47,6 +62,13 @@ public class StageForest extends Stage implements Init {
 			GameManager.getInstace().delay(1000);
 		}
 
+	}
+
+	private boolean openBoss() {
+
+		boolean isOpen = (GameManager.mushroomCnt >= 5 && GameManager.slimeCnt >= 5 && GameManager.snailCnt >= 5);
+
+		return isOpen;
 	}
 
 	@Override
@@ -99,7 +121,7 @@ public class StageForest extends Stage implements Init {
 			this.setIsSet();
 		}
 
-		if(map.get(y).get(x).equals(BOSS)) {
+		if (map.get(y).get(x).equals(BOSS)) {
 			String text = "보스 [킹 슬라임]과 전투를 시작합니다.";
 			GameManager.getInstace().showText(text, 1000);
 			GameManager.preStage = GameManager.curStage + "보스";

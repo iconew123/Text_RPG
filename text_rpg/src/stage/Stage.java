@@ -103,8 +103,10 @@ abstract public class Stage {
 						System.out.print(openMapColor + "[℗] " + GameManager.exit);
 					} else if (section.equals(POTAL_CASTLE)) {
 						// 포탈 입장 가능 색 입히기
-						String openMapColor = GameManager.isOpenCastle ? GameManager.blue : GameManager.red;
-						System.out.print(openMapColor + "[℗] " + GameManager.exit);
+						if (GameManager.isOpenCastle)
+							System.out.print(GameManager.blue + "[℗] " + GameManager.exit);
+						else
+							System.out.print(GameManager.black + "■■■ " + GameManager.exit);
 					} else if (section.equals(GUILD))
 						System.out.print(GameManager.purple + "[♣] " + GameManager.exit);
 					else if (section.equals(BOSS)) {
