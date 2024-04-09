@@ -1,19 +1,20 @@
 package stage;
 
-import text_rpg.GameManager;
+import java.util.Vector;
+
+import Unit.Monster;
+import Unit.UnitManager;
 
 public class StageBattle extends Stage {
+	
+	private Vector<Monster> monsters;
 
 	@Override
 	public void updateStage() {
 
-		if (GameManager.preStage.equals("FOREST")) {
-			System.out.println("숲 전투 시작");
-			GameManager.nextStage = GameManager.preStage;
-		} else if (GameManager.preStage.equals("CAVE")) {
-			System.out.println("동굴 전투 시작");
-			GameManager.nextStage = GameManager.preStage;
-		}
+		UnitManager.getInstance().summonRandomMonster(3);
+		monsters = UnitManager.getInstance().getMonsterList();
+		System.out.println();
 
 	}
 

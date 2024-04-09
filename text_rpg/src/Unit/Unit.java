@@ -1,7 +1,7 @@
 package Unit;
 
 abstract public class Unit {
-
+	
 	private String name;
 	private int max_hp;
 	private int hp;
@@ -22,8 +22,14 @@ abstract public class Unit {
 		this.lv = lv;
 	}
 
+
+
 	public String getName() {
 		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getMaxHp() {
@@ -85,5 +91,14 @@ abstract public class Unit {
 	}
 
 	abstract void Attack(Unit target);
+
+	public void init(String name , int hp, int power, int defense, int lv) {
+		this.name = name;
+		this.max_hp = hp;
+		this.hp = hp;
+		this.power = power;
+		this.defense = defense;
+		this.lv = lv;
+	}
 
 }
