@@ -1,6 +1,7 @@
 package Unit;
 
 import Item.Item;
+import text_rpg.GameManager;
 
 public class Player extends Unit {
 
@@ -28,7 +29,7 @@ public class Player extends Unit {
 	}
 
 	public void setExp(int exp) {
-		this.exp += exp;
+		this.exp = exp;
 	}
 
 	public String getType() {
@@ -44,8 +45,18 @@ public class Player extends Unit {
 	}
 
 	@Override
-	void Attack(Unit target) {
-		// TODO Auto-generated method stub
+	public void attack(Unit target) {
+		// 데미지 산출 공식
+		int damage = (int) (this.getPower() * (1 - (double) target.getDefense() / 100));
+		if (damage <= 1)
+			damage = 1;
+		String message = String.format("[%s]의 일반 공격으로 [%s]에게 [%d]의 피해를 입혔습니다.", this.getName(), target.getName(),
+				damage);
+		System.out.println(message);
+		target.setHp(damage * -1);
+		if (target.getHp() == 0)
+			System.out.printf("[%s] 유팃 사망\n", target.getName());
+		GameManager.getInstace().delay(1000);
 	}
 
 	@Override

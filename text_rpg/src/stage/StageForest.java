@@ -43,6 +43,8 @@ public class StageForest extends Stage implements Init {
 			// 현재 스테이지의 기준에 따라 몹생성
 			GameManager.preStage = GameManager.nextStage;
 			GameManager.nextStage = "BATTLE";
+			System.out.println("[숲] 몬스터와 전투 시작!");
+			GameManager.getInstace().delay(1000);;
 		}
 
 	}
