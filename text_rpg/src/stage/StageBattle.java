@@ -109,9 +109,9 @@ public class StageBattle extends Stage {
 			// 스테이지 해금 조건
 			if (name.equals("킹 슬라임"))
 				GameManager.isOpenCave = true;
-			else if(name.equals("킹 케슬 골렘"))
+			else if (name.equals("킹 케슬 골렘"))
 				GameManager.isOpenCastle = true;
-			
+
 			// 각각의 몬스터 카운트
 			if (name.contains("슬라임"))
 				GameManager.slimeCnt++;
@@ -187,7 +187,10 @@ public class StageBattle extends Stage {
 				continue;
 
 			int randomTarget = targetPlayer();
-			int randomAction = random.nextInt(1) < 1 ? NORMAL_ATTACK : USE_SKILL;
+			// 보스랑 2스테이지유닛만 스킬을 사용
+			int randomAction = 1;
+			if (GameManager.preStage.contains("CAVE") || monster.getName().contains("킹"))
+				randomAction = random.nextInt(10) < 3 ? NORMAL_ATTACK : USE_SKILL;
 
 			if (randomAction == NORMAL_ATTACK)
 				monster.attack(players.get(randomTarget));

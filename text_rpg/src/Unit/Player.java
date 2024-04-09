@@ -3,7 +3,7 @@ package Unit;
 import Item.Item;
 import text_rpg.GameManager;
 
-public class Player extends Unit {
+public class Player extends Unit implements Skill{
 
 	public static int money = 10000;
 
@@ -54,14 +54,11 @@ public class Player extends Unit {
 		GameManager.getInstace().delay(1000);
 	}
 
-//	@Override
-//	public String toString() {
-//		// TODO Auto-generated method stub
-//		String message = String.format("[이름 : %s] , [직업 : %s] , [레벨 : %d] , [exp : %d/%d]\n", this.getName(), this.type,
-//				this.getLv(), this.exp, this.getLv() * 100);
-//		message += String.format("[HP : %d/%d] , [MP : %d/%d] , [공격력 : %d] , [방어력 : %d]\n", this.getHp(),
-//				this.getMaxHp(), this.getMp(), this.getMaxMp(), this.getPower(), this.getDefense());
-//		return message;
-//	}
+	@Override
+	public void skill(Unit target) {
+		// TODO Auto-generated method stub
+		
+	}
 
+	
 }

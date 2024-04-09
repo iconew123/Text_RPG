@@ -84,7 +84,7 @@ public class StageLobby extends Stage {
 					break;
 
 				}
-
+				// 초기화 메소드 추가
 				GameManager.getInstace().showLoading();
 				GameManager.nextStage = "TOWN";
 				break;
