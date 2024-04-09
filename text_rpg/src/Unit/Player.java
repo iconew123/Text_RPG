@@ -29,11 +29,11 @@ public class Player extends Unit {
 	}
 
 	public void setExp(int exp) {
-		this.exp = exp;
-		if (this.exp >= this.getLv() * 100) {
+		this.exp += exp;
+		while (this.exp >= this.getLv() * 100) {
 			System.out.printf("[%s] 레벨업!!!\n", this.getName());
 			this.setLv();
-			exp -= this.getLv() * 100;
+			this.exp -= (this.getLv() - 1) * 100;
 		}
 	}
 
@@ -61,11 +61,9 @@ public class Player extends Unit {
 		System.out.println(message);
 		target.setHp(damage * -1);
 		if (target.getHp() == 0) {
-			int plusExp = target.getExp();
-			System.out.printf("[%s] 유닛 처치로 , 경험치 : %d, 골드 : %d를 얻었습니다.\n", target.getName(), plusExp,
+			System.out.printf("[%s] 유닛 처치로 , 경험치 : %d, 골드 : %d를 얻었습니다.\n", target.getName(), target.getExp(),
 					target.getMoney());
-			int exp = this.getExp() + plusExp;
-			this.setExp(exp);
+			this.setExp(1000);
 			Player.money += target.getMoney();
 		}
 		GameManager.getInstace().delay(1000);
