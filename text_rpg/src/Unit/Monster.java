@@ -8,19 +8,10 @@ public class Monster extends Unit {
 
 	public Random random = new Random();
 
-	private int exp;
 	private int money;
 
-	public Monster(String name, int hp, int mp, int power, int defense, int lv) {
-		super(name, hp, mp, power, defense, lv);
-	}
-
-	public int getExp() {
-		return this.exp;
-	}
-
-	public void setExp(int exp) {
-		this.exp = exp;
+	public Monster(String name, int hp, int power, int defense, int lv) {
+		super(name, hp, 0, power, defense, lv);
 	}
 
 	public int getMoney() {

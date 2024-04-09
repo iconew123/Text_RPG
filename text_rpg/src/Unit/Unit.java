@@ -1,5 +1,7 @@
 package Unit;
 
+import text_rpg.GameManager;
+
 abstract public class Unit {
 
 	private String name;
@@ -10,6 +12,7 @@ abstract public class Unit {
 	private int power;
 	private int defense;
 	private int lv;
+	private int exp;
 	private boolean isDead;
 
 	public Unit(String name, int hp, int mp, int power, int defense, int lv) {
@@ -21,6 +24,7 @@ abstract public class Unit {
 		this.power = power;
 		this.defense = defense;
 		this.lv = lv;
+		this.exp = 0;
 	}
 
 	public String getName() {
@@ -83,6 +87,22 @@ abstract public class Unit {
 		this.defense += 1;
 	}
 
+	public int getExp() {
+		return this.exp;
+	}
+
+	public void setExp(int exp) {
+		this.exp += exp;
+		// 플레이어 케릭터만 레벨업가능 -> 플레이어 인지 구분 방법 (MaxMp > 0)
+		while (this.exp >= this.getLv() * 100 && this.getMaxMp() > 0) {
+			System.out.printf("[%s] 레벨업!!!\n", this.getName());
+			this.setLv();
+			this.setHp(50);
+			this.setMp(50);
+			this.exp -= (this.getLv() - 1) * 100;
+		}
+	}
+
 	public int getLv() {
 		return this.lv;
 	}
@@ -90,6 +110,7 @@ abstract public class Unit {
 	public void setLv() {
 		this.lv++;
 		setMaxHp();
+		setMaxMp();
 		setPower();
 		setDefense();
 	}
@@ -109,13 +130,17 @@ abstract public class Unit {
 		this.lv = lv;
 	}
 
-	public String battleMessage() {
+	@Override
+	public String toString() {
 		String message = "";
 		String remainHp = showHp();
-		message += String.format("lv%d. [%s] : " + remainHp + "(%d/%d)   ", this.lv, this.name, this.hp, this.max_hp);
+		message += String.format("lv%d. [%s] : " + "hp : " + remainHp + "(%d/%d)   ", this.lv, this.name, this.hp,
+				this.max_hp);
 		if (this.max_mp > 0) {
 			String remainMp = showMp();
-			message += String.format(remainMp + "(%d/%d)   ", this.mp, this.max_mp);
+			String remainExp = showExp();
+			message += String.format("mp : " + remainMp + "(%d/%d)   ", this.mp, this.max_mp);
+			message += String.format("exp : " + remainExp + "(%d/%d)   ", this.exp, this.lv * 100);
 		}
 		message += String.format("공격력 / 방어율 : (%d / %d%%)", this.power, this.defense);
 		return message;
@@ -126,14 +151,14 @@ abstract public class Unit {
 		double per = ((double) this.hp / (double) this.max_hp) * 10.0;
 		for (int i = 1; i <= 10; i++) {
 			if (per < 1) {
-				showHp += "◧□□□□□□□□□";
+				showHp += GameManager.red + "◧□□□□□□□□□" + GameManager.exit;
 				break;
 			}
 
 			if (per >= i)
-				showHp += "■";
+				showHp += GameManager.red + "■" + GameManager.exit;
 			else
-				showHp += "□";
+				showHp += GameManager.red + "□" + GameManager.exit;
 		}
 
 		return showHp;
@@ -141,20 +166,38 @@ abstract public class Unit {
 
 	private String showMp() {
 		String showMp = "";
-		double per = (this.mp / this.max_mp) * 10;
+		double per = ((double) this.mp / (double) this.max_mp) * 10.0;
 		for (int i = 1; i <= 10; i++) {
 			if (per < 1) {
-				showMp += "◧□□□□□□□□□";
+				showMp += GameManager.blue + "◧□□□□□□□□□" + GameManager.exit;
 				break;
 			}
 
 			if (per >= i)
-				showMp += "■";
+				showMp += GameManager.blue + "■" + GameManager.exit;
 			else
-				showMp += "□";
+				showMp += GameManager.blue + "□" + GameManager.exit;
 		}
 
 		return showMp;
+	}
+
+	private String showExp() {
+		String showExp = "";
+		double per = ((double) this.exp / (double) (this.lv * 100)) * 10.0;
+		for (int i = 1; i <= 10; i++) {
+			if (per < 1) {
+				showExp += GameManager.yellow + "◧□□□□□□□□□" + GameManager.exit;
+				break;
+			}
+
+			if (per >= i)
+				showExp += GameManager.yellow + "■" + GameManager.exit;
+			else
+				showExp += GameManager.yellow + "□" + GameManager.exit;
+		}
+
+		return showExp;
 	}
 
 }

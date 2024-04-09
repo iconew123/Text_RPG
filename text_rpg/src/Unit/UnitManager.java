@@ -52,10 +52,9 @@ public class UnitManager {
 
 			try {
 				Class<?> clazz = Class.forName(path + monsterKind[num]);
-				Class<?>[] params = new Class<?>[] { String.class, int.class, int.class, int.class, int.class,
-						int.class };
+				Class<?>[] params = new Class<?>[] { String.class, int.class, int.class, int.class, int.class };
 				String name = clazzName(clazz);
-				Object obj = clazz.getDeclaredConstructor(params).newInstance(name, 0, 0, 0, 0, 0);
+				Object obj = clazz.getDeclaredConstructor(params).newInstance(name, 0, 0, 0, 0);
 				Monster tmp = (Monster) obj;
 
 				int hp = (random.nextInt(lv) + 1) * 30;

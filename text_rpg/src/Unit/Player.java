@@ -8,7 +8,6 @@ public class Player extends Unit {
 	public static int money = 10000;
 
 	private String type;
-	private int exp;
 	private boolean isParty;
 	Item weapon;
 	Item armor;
@@ -16,25 +15,11 @@ public class Player extends Unit {
 
 	public Player(String name, String type, int hp, int mp, int power, int defense, int lv, boolean isParty) {
 		super(name, hp, mp, power, defense, lv);
-		this.exp = 0;
 		this.type = type;
 		this.isParty = isParty;
 		this.weapon = null;
 		this.armor = null;
 		this.accessory = null;
-	}
-
-	public int getExp() {
-		return this.exp;
-	}
-
-	public void setExp(int exp) {
-		this.exp += exp;
-		while (this.exp >= this.getLv() * 100) {
-			System.out.printf("[%s] 레벨업!!!\n", this.getName());
-			this.setLv();
-			this.exp -= (this.getLv() - 1) * 100;
-		}
 	}
 
 	public String getType() {
@@ -63,20 +48,20 @@ public class Player extends Unit {
 		if (target.getHp() == 0) {
 			System.out.printf("[%s] 유닛 처치로 , 경험치 : %d, 골드 : %d를 얻었습니다.\n", target.getName(), target.getExp(),
 					target.getMoney());
-			this.setExp(target.getExp());
+			this.setExp(1000);
 			Player.money += target.getMoney();
 		}
 		GameManager.getInstace().delay(1000);
 	}
 
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		String message = String.format("[이름 : %s] , [직업 : %s] , [레벨 : %d] , [exp : %d/%d]\n", this.getName(), this.type,
-				this.getLv(), this.exp, this.getLv() * 100);
-		message += String.format("[HP : %d/%d] , [MP : %d/%d] , [공격력 : %d] , [방어력 : %d]\n", this.getHp(),
-				this.getMaxHp(), this.getMp(), this.getMaxMp(), this.getPower(), this.getDefense());
-		return message;
-	}
+//	@Override
+//	public String toString() {
+//		// TODO Auto-generated method stub
+//		String message = String.format("[이름 : %s] , [직업 : %s] , [레벨 : %d] , [exp : %d/%d]\n", this.getName(), this.type,
+//				this.getLv(), this.exp, this.getLv() * 100);
+//		message += String.format("[HP : %d/%d] , [MP : %d/%d] , [공격력 : %d] , [방어력 : %d]\n", this.getHp(),
+//				this.getMaxHp(), this.getMp(), this.getMaxMp(), this.getPower(), this.getDefense());
+//		return message;
+//	}
 
 }

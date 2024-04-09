@@ -3,6 +3,7 @@ package stage;
 import java.util.Vector;
 
 import Unit.Monster;
+import Unit.MonsterSlime;
 import Unit.Player;
 import Unit.UnitManager;
 import text_rpg.GameManager;
@@ -30,8 +31,21 @@ public class StageBattle extends Stage {
 
 	private void spawnMonster() {
 		players = unitManager.partyList;
-		unitManager.summonRandomMonster(3);
-		monsters = unitManager.getMonsterList();
+		if (GameManager.preStage.contains("보스")) {
+			monsters = new Vector<Monster>();
+			if (GameManager.preStage.contains("FOREST")) {
+				MonsterSlime boss = new MonsterSlime("킹 슬라임", 2000, 50, 20, 10);
+				boss.setExp(500);
+				boss.setMoney(1000);
+				monsters.add(boss);
+			} else if (GameManager.preStage.contains("CAVE")) {
+				// Cave 보스
+			}
+
+		} else {
+			unitManager.summonRandomMonster(3);
+			monsters = unitManager.getMonsterList();
+		}
 		livePlayer = players.size();
 		liveMonster = monsters.size();
 	}
@@ -51,6 +65,15 @@ public class StageBattle extends Stage {
 			GameManager.getInstace().delay(1000);
 		}
 		showUnitList();
+		// 플레이어 유닛 모두 사망시 즉시 게임종료
+		if (GameManager.nextStage.equals("END"))
+			return;
+
+		// 이전 맵 돌아가기(보스전 포함)
+		if (GameManager.preStage.contains("FOREST"))
+			GameManager.preStage = "FOREST";
+		else if (GameManager.preStage.contains("CAVE"))
+			GameManager.preStage = "CAVE";
 		GameManager.nextStage = GameManager.preStage;
 		GameManager.preStage = "";
 	}
@@ -62,14 +85,14 @@ public class StageBattle extends Stage {
 			if (p.getIsDead())
 				System.err.printf("lv%d. [%s] : [사망함]\n", p.getLv(), p.getName());
 			else
-				System.out.println(p.battleMessage());
+				System.out.println(p);
 		}
 		System.out.println("==================================[MONSTER]==================================");
 		for (Monster m : monsters)
 			if (m.getIsDead())
 				System.err.printf("lv%d. [%s] : [사망함]\n", m.getLv(), m.getName());
 			else
-				System.out.println(m.battleMessage());
+				System.out.println(m);
 		System.out.println("=============================================================================");
 		GameManager.getInstace().delay(1500);
 	}

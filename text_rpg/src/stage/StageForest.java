@@ -44,9 +44,9 @@ public class StageForest extends Stage implements Init {
 			GameManager.preStage = GameManager.nextStage;
 			GameManager.nextStage = "BATTLE";
 			System.out.println("[숲] 몬스터와 전투 시작!");
-			GameManager.getInstace().delay(1000);;
+			GameManager.getInstace().delay(1000);
 		}
-
+		isexsist = true;
 	}
 
 	@Override
@@ -77,7 +77,6 @@ public class StageForest extends Stage implements Init {
 
 	@Override
 	public boolean check(int y, int x, String interaction) {
-
 		ArrayList<ArrayList<Integer>> map = Maps.map.get(GameManager.curStage);
 
 		if (y < 0 || y >= map.size() || x < 0 || x >= map.get(y).size())
@@ -100,7 +99,12 @@ public class StageForest extends Stage implements Init {
 			this.setIsSet();
 		}
 
-		// 보스전투 구현
+		if(map.get(y).get(x).equals(BOSS)) {
+			String text = "보스 [킹 슬라임]과 전투를 시작합니다.";
+			GameManager.getInstace().showText(text, 1000);
+			GameManager.preStage = GameManager.curStage + "보스";
+			GameManager.nextStage = "BATTLE";
+		}
 
 		return true;
 	}
