@@ -63,7 +63,7 @@ public class Player extends Unit {
 		if (target.getHp() == 0) {
 			System.out.printf("[%s] 유닛 처치로 , 경험치 : %d, 골드 : %d를 얻었습니다.\n", target.getName(), target.getExp(),
 					target.getMoney());
-			this.setExp(1000);
+			this.setExp(target.getExp());
 			Player.money += target.getMoney();
 		}
 		GameManager.getInstace().delay(1000);
