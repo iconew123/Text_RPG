@@ -16,7 +16,7 @@ public class UnitManager {
 
 	private String path = "Unit.";
 	private String[] forestKind = { "MonsterSlime", "MonsterSnail", "MonsterMushroom" };
-	private String[] caveKind = { "MonsterBat", "MonsterOrc", "MonsterWolf" };
+	private String[] caveKind = { "MonsterBat", "MonsterOrc", "MonsterGolem" };
 
 	private UnitManager() {
 		partyList.add(new Player(GameManager.playerName, GameManager.playerType, 500, 500, 30, 10, 1, true));
@@ -85,8 +85,8 @@ public class UnitManager {
 			name += "박쥐";
 		} else if (clazz.getName().equals(MonsterOrc.class.getName())) {
 			name += "오크";
-		} else if (clazz.getName().equals(MonsterWolf.class.getName())) {
-			name += "늑대";
+		} else if (clazz.getName().equals(MonsterGolem.class.getName())) {
+			name += "골렘";
 		}
 
 		return name;

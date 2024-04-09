@@ -43,6 +43,8 @@ public class StageCave extends Stage implements Init {
 			// 현재 스테이지의 기준에 따라 몹생성
 			GameManager.preStage = GameManager.nextStage;
 			GameManager.nextStage = "BATTLE";
+			System.out.println("[동굴] 몬스터와 전투 시작!");
+			GameManager.getInstace().delay(1000);
 		}
 
 	}
@@ -96,7 +98,12 @@ public class StageCave extends Stage implements Init {
 			this.setIsSet();
 		}
 
-		// 보스전투 구현
+		if (map.get(y).get(x).equals(BOSS)) {
+			String text = "보스 [킹 케슬 골렘]과 전투를 시작합니다.";
+			GameManager.getInstace().showText(text, 1000);
+			GameManager.preStage = GameManager.curStage + "보스";
+			GameManager.nextStage = "BATTLE";
+		}
 
 		return true;
 	}

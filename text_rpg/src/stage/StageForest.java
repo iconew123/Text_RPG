@@ -46,7 +46,7 @@ public class StageForest extends Stage implements Init {
 			System.out.println("[숲] 몬스터와 전투 시작!");
 			GameManager.getInstace().delay(1000);
 		}
-		isexsist = true;
+
 	}
 
 	@Override

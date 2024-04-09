@@ -39,7 +39,10 @@ public class StageBattle extends Stage {
 				boss.setMoney(1000);
 				monsters.add(boss);
 			} else if (GameManager.preStage.contains("CAVE")) {
-				// Cave 보스
+				MonsterSlime boss = new MonsterSlime("킹 케슬 골렘", 4000, 70, 50, 20);
+				boss.setExp(500);
+				boss.setMoney(1000);
+				monsters.add(boss);
 			}
 
 		} else {
