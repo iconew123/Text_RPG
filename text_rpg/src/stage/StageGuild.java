@@ -106,9 +106,9 @@ public class StageGuild extends Stage {
 		for (int i = 0; i < guildMenber.size(); i++) {
 			Player g = guildMenber.get(i);
 			if (g.getIsParty())
-				System.out.println(GameManager.white + "[ " + (i + 1) + " 번 ]. " + g + GameManager.exit);
+				System.out.println(GameManager.white + "[ " + (i + 1) + " 번 ]. " + GameManager.exit + g);
 			else
-				System.out.println(GameManager.green + "[ " + (i + 1) + " 번 ]. " + g + GameManager.exit);
+				System.out.println(GameManager.green + "[ " + (i + 1) + " 번 ]. " + GameManager.exit + g);
 		}
 		System.out.println("================================================================");
 	}

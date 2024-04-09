@@ -49,7 +49,7 @@ public class GameManager {
 		setStages();
 		curStage = "";
 		preStage = "";
-		nextStage = "FOREST";
+		nextStage = "CAVE";
 		pY = 0;
 		pX = 0;
 	}
