@@ -2,5 +2,5 @@ package Unit;
 
 public interface Skill {
 	
-	public void skill(Unit target);
+	public boolean skill(Unit target);
 }

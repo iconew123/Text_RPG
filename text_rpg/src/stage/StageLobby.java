@@ -1,5 +1,7 @@
 package stage;
 
+import Unit.Player;
+import Unit.UnitManager;
 import text_rpg.GameManager;
 
 public class StageLobby extends Stage {
@@ -85,6 +87,8 @@ public class StageLobby extends Stage {
 
 				}
 				// 초기화 메소드 추가
+				UnitManager.partyList
+						.add(new Player(GameManager.playerName, GameManager.playerType, 500, 500, 30, 10, 1, true));
 				GameManager.getInstace().showLoading();
 				GameManager.nextStage = "TOWN";
 				break;

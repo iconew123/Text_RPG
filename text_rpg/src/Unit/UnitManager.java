@@ -19,7 +19,7 @@ public class UnitManager {
 	private String[] caveKind = { "MonsterBat", "MonsterOrc", "MonsterGolem" };
 
 	private UnitManager() {
-		partyList.add(new Player(GameManager.playerName, GameManager.playerType, 500, 500, 30, 10, 1, true));
+		
 	}
 
 	private static UnitManager instance = new UnitManager();

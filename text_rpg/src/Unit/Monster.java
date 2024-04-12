@@ -35,6 +35,7 @@ public class Monster extends Unit {
 		if (target.getHp() == 0)
 			System.out.printf("[%s] 유팃 사망\n", target.getName());
 		GameManager.getInstace().delay(1000);
+		
 	}
 
 }

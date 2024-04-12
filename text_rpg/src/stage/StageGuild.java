@@ -106,9 +106,11 @@ public class StageGuild extends Stage {
 		for (int i = 0; i < guildMenber.size(); i++) {
 			Player g = guildMenber.get(i);
 			if (g.getIsParty())
-				System.out.println(GameManager.white + "[ " + (i + 1) + " 번 ]. " + GameManager.exit + g);
+				System.out.println(GameManager.white + "[ " + (i + 1) + " 번 ]. " + GameManager.exit + "[ " + g.getType()
+						+ " ] " + g);
 			else
-				System.out.println(GameManager.green + "[ " + (i + 1) + " 번 ]. " + GameManager.exit + g);
+				System.out.println(GameManager.green + "[ " + (i + 1) + " 번 ]. " + GameManager.exit + "[ " + g.getType()
+						+ " ] " + g);
 		}
 		System.out.println("================================================================");
 	}
@@ -127,7 +129,7 @@ public class StageGuild extends Stage {
 	private void addGuildList() {
 		Player tmpP = randomGuildMenber();
 		System.out.println("모험가가 길드에 가입했습니다.");
-		System.out.println(tmpP);
+		System.out.println("[ " + tmpP.getType() + " ] " + tmpP);
 		GameManager.getInstace().delay(2000);
 		guildMenber.add(tmpP);
 	}
@@ -193,7 +195,7 @@ public class StageGuild extends Stage {
 		System.out.println("============================[파티원 목록]============================");
 		for (int i = 0; i < UnitManager.partyList.size(); i++) {
 			Player p = UnitManager.partyList.get(i);
-			System.out.println("[ " + (i + 1) + " 번 ]. " + p);
+			System.out.println("[ " + (i + 1) + " 번 ]. " + "[ " + p.getType() + " ] " + p);
 		}
 		System.out.println("================================================================\n");
 	}

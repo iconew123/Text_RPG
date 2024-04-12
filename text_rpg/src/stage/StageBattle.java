@@ -90,7 +90,7 @@ public class StageBattle extends Stage {
 			if (p.getIsDead())
 				System.err.printf("lv%d. [%s] : [사망함]\n", p.getLv(), p.getName());
 			else
-				System.out.println(p);
+				System.out.println("[ " + p.getType() + " ] " + p);
 		}
 		System.out.println("==================================[MONSTER]==================================");
 		for (Monster m : monsters)
@@ -162,13 +162,16 @@ public class StageBattle extends Stage {
 				continue;
 
 			int randomTarget = targetMonster();
-			System.out.printf("[%s] [1.일반 공격] [2.스킬 사용(mp소모)]\n", player.getName());
+			System.out.printf("[%s] [1.일반 공격] [2.스킬 사용(mp50소모)]\n", player.getName());
 			int sel = inputNumber(">>");
 
 			if (sel == NORMAL_ATTACK)
 				player.attack(monsters.get(randomTarget));
 			else if (sel == USE_SKILL) {
-				// 스킬 구현
+				if (!player.skill(monsters.get(randomTarget))) {
+					i--;
+					continue;
+				}
 			} else {
 				i--;
 				continue;

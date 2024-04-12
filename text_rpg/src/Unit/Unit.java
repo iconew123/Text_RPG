@@ -134,7 +134,7 @@ abstract public class Unit {
 	public String toString() {
 		String message = "";
 		String remainHp = showHp();
-		message += String.format("lv%d. [%s] : " + "hp : " + remainHp + "(%d/%d)   ", this.lv, this.name, this.hp,
+		message += String.format("lv%d. [%s] : " + "hp : " + remainHp + "(%d/%d)   ", this.lv ,this.name, this.hp,
 				this.max_hp);
 		if (this.max_mp > 0) {
 			String remainMp = showMp();

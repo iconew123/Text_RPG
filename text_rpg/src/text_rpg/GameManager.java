@@ -56,7 +56,7 @@ public class GameManager {
 		setStages();
 		curStage = "";
 		preStage = "";
-		nextStage = "FOREST";
+		nextStage = "TITLE";
 		pY = 0;
 		pX = 0;
 	}

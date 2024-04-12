@@ -7,9 +7,11 @@ public class MonsterBat extends Monster implements Skill{
 	}
 
 	@Override
-	public void skill(Unit target) {
+	public boolean skill(Unit target) {
 		// TODO Auto-generated method stub
 		
+		
+		return true;
 	}
 
 }
